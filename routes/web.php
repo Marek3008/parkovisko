@@ -5,9 +5,9 @@ use App\Models\ParkingSlot;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('index', ["slots" => ParkingSlot::with('sensor')->get()]);
 });
 
 Route::get('/banasko', function(){
-    return ParkingSlot::all();
+    return ParkingSlot::with('sensor')->get();
 })->name('banasko');

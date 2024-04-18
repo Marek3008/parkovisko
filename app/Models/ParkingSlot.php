@@ -6,18 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class ParkingSlot extends Model
 {
     use HasFactory;
 
-    public function sensor() : HasOne
+    public function sensor() : BelongsTo
     {
-        return $this->hasOne(Sensor::class);
+        return $this->belongsTo(Sensor::class);
     }
     
-    public function parkingHouse() : BelongsTo
-    {
-        return $this->belongsTo(ParkingHouse::class);
-    }
 }

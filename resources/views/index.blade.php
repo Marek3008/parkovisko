@@ -19,29 +19,17 @@
         client.on('connect', function () {
             console.log('Connected');
             // Subscribe to a topic
-            client.subscribe('/zmena');
+            client.subscribe('banasko/zmena');
         })
-
-        //prvotny vyber dat a vytvaranie divov
-        mqttData("{{ route('banasko') }}").then(models => {
-            let counter = 1;
-            models.forEach((element, index) => {
-                const divId = `miesto${index + 1}`;
-                const div = document.createElement('div');
-                div.id = divId;
-                div.innerHTML = `<p>${element.occupied}</p>`;
-                document.querySelector(".parkovisko").appendChild(div);
-            });
-        });
 
         //update ked pride sprava na topic
         client.on('message', function (topic, message) {
             let html = ``;
-            const data = mqttData("{{ route('banasko') }}").then(models => {
+            mqttData("{{ route('banasko') }}").then(models => {
                 models.forEach((element, index) => {
                     console.log(element);
                     content = `<p>${element.occupied}</p>`;
-                    document.getElementById(`miesto${index + 1}`).innerHTML = content;
+                    document.getElementById(`${element.sensor.special_id}`).innerHTML = content;
                 });
             });
         })
@@ -49,8 +37,11 @@
 </head>
 <body>
     <div class="parkovisko" style="display: flex; justify-content: space-around;">
-    
+        @foreach ($slots as $slot)
+            <div id="{{$slot->sensor->special_id}}">
+                <p>{{$slot->occupied}}</p>
+            </div>
+        @endforeach
     </div>
-    
 </body>
 </html>

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->boolean("occupied")->default(false);
             $table->foreignIdFor(Sensor::class)->constrained();
-            $table->foreignIdFor(ParkingHouse::class)->constrained();
             $table->timestamps();
         });
     }
