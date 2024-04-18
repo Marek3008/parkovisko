@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ParkedCar;
+use App\Models\ParkingSlot;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,5 +9,5 @@ Route::get('/', function () {
 });
 
 Route::get('/banasko', function(){
-    return ParkedCar::all();
+    return ParkingSlot::all();
 })->name('banasko');
