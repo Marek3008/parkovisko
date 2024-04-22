@@ -165,7 +165,7 @@
             </div> 
             <div class="nav-list">
                 <a class="nav-list--item" href="#">Dashboard</a>
-                <a class="nav-list--item" href="#">Allowed Cars</a>
+                <a class="nav-list--item" href="{{ route('allowedCars') }}">Allowed Cars</a>
                 <a class="nav-list--item" href="#">Modes</a>
                 <a class="nav-list--item" href="#">Profile</a>
                 <div class="nav-logout-item">
