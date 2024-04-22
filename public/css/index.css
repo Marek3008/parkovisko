@@ -1,0 +1,61 @@
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 10rem;
+}
+
+.main-content-left {
+    flex-basis: 60%;
+}
+
+.main-content-right {
+    flex-grow: 1;
+}
+
+.overview {
+    height: 60rem;
+    border-radius: 3px;
+    padding: 3rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.parkingSlotsOverview {
+    background-color: var(--terciary-color);
+}
+
+.parkedCarsOverview {
+    background-color: var(--secondary-color);
+}
+
+.overviewItem {
+    font-size: 4rem;
+    color: var(--font-color-gray);
+    border-bottom: 1px solid var(--light-gray-color);
+
+    &:not(:last-child) {
+        margin-bottom: 2.5rem;
+    }
+}
+
+.parkingSlot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.occupied {
+    color: #ce6139;
+}
+
+.free {
+    color: #178b17;
+}
+
+@media screen and (max-width: 900px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .main-content-left {
+        flex-basis: 0;
+    }
+}
