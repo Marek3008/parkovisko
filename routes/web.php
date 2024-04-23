@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index', ["slots" => ParkingSlot::with('sensor')->get(), "parkingHouse" => ParkingHouse::where('id', 1)->first(), "parkedCars" => ParkedCar::all()]);
-});
+})->name('index');
 
-Route::get('/banasko', function(){
+Route::get('/request-parking-slots', function(){
     return ParkingSlot::with('sensor')->get();
-})->name('banasko');
+})->name('requestParkingSlots');
+
+Route::get('/request-parked-cars', function(){
+    return ParkedCar::all();
+})->name('requestParkedCars');
 
 Route::get('/allowed-cars', function(){
     return view('allowed', ["cars" => AllowedCars::orderBy('id', 'desc')->get()]);
