@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AllowedCars extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "spz"
+    ];
 }
