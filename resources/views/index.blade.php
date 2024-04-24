@@ -15,9 +15,12 @@
     </script>
     <script src="{{ asset('js/mqtt.js') }}"></script>
 @endsection
-    
+
+@section('headingMain')
+Parking house {{ucfirst($parkingHouse->name)}} in {{ucfirst($parkingHouse->location)}}
+@endsection
+
 @section('content')
-<h1 class="heading-main">Parking house {{ucfirst($parkingHouse->name)}} in {{ucfirst($parkingHouse->location)}}</h1>
 <div class="main-content">
     <div class="main-content-left">
         <h3 class="heading-tertiary freeSlotsCount">{{$slots->where('occupied', 0)->count()}}/{{$slots->count()}} free</h3>

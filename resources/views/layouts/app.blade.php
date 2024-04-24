@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @yield('meta', '')
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -19,7 +21,7 @@
     <header>
         <nav class="nav">
             <div class="nav-logo">
-                <img class="nav-logo--img" src="{{ asset('img/logo_white.png') }}" alt="Logo">
+                <a href="{{route('index')}}"><img class="nav-logo--img" src="{{ asset('img/logo_white.png') }}" alt="Logo"></a>
             </div> 
             <div class="mobile-nav">
                 <div class="mobile-nav-container">
@@ -29,7 +31,7 @@
                 </div>
             </div>
             <div class="nav-list">
-                <a class="nav-list--item" href="#">Dashboard</a>
+                <a class="nav-list--item" href="{{route('index')}}">Dashboard</a>
                 <a class="nav-list--item" href="{{ route('allowedCars') }}">Allowed Cars</a>
                 <a class="nav-list--item" href="#">Modes</a>
                 <a class="nav-list--item" href="#">Profile</a>
@@ -39,6 +41,7 @@
         <script src="{{asset('js/nav.js')}}"></script>
     </header>
     <main>
+        <h1 class="heading-main">@yield('headingMain')</h1>
         @yield('content')
     </main>
     <footer>
