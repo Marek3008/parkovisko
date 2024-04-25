@@ -1,3 +1,6 @@
+const submitButton = document.getElementById("submit-btn");
+const formInput = document.getElementById("form-input");
+
 // csrf tu musi byt bez toho mi hadzalo 419
 function getCSRFToken() {
     return document
@@ -5,36 +8,47 @@ function getCSRFToken() {
         .getAttribute("content");
 }
 
+async function getAllowedCars(){
+    const response = await fetch('/request-allowed-cars');
+    const result = await response.json();
+    return result;
+}
+
+// ----- MARIO TOTO SOM TI PRIPRAVIL ----- (funguje to)
+function validateInput(){
+    if (!formInput.value) {
+        console.log("napis nieco");
+        return false;
+    }
+    if (formInput.value.length > 10) {
+        console.log("je to dlhe");
+        return false;
+    }
+    return true;
+}
+
 // pridavanie spz; zaroven sa aj updatuje content bez refreshu
-const submitButton = document.getElementById("submit-btn");
-const formInput = document.getElementById("form-input");
 submitButton.addEventListener("click", function () {
-    fetch("/allowed-cars/" + formInput.value, {
-        method: "POST",
-        headers: {
-            "X-CSRF-TOKEN": getCSRFToken(),
-        },
-    }).then(function (response) {
-        if (response.ok) {
-            const firstChild =
-                document.getElementById("cars").firstElementChild;
+    if(validateInput()){
+        fetch('/allowed-cars/' + formInput.value, {
+            method: 'POST',
+            headers: {
+                "X-CSRF-TOKEN": getCSRFToken(),
+            }
+        }).then(() => {
+            return getAllowedCars();
+        }).then((models) => {
+            document.getElementById('cars').innerHTML = "";
+            models.forEach((element) => {
+                const html = `<div id="car-${element.id}" class="car allowed-overview-item" data-record-id="${element.id}">
+                                <div class="car--id">${element.spz}</div>
+                                <button class="delete-btn btn car--deleteBtn" data-record-id="${element.id}">Delete</button>
+                            </div>`;
 
-            // to co sa prida do db sa zaroven prida aj tu ale cez js (aby to sa to updatovalo bez refreshu)
-            // prettier-ignore
-            let html = `<div id="car-${+firstChild.getAttribute("data-record-id") + 1}" class="car allowed-overview-item" data-record-id="${+firstChild.getAttribute("data-record-id") + 1}">
-                            <div class="carId--id">${formInput.value}</div>
-                            <button class="delete-btn btn carId--deleteBtn" data-record-id="${+firstChild.getAttribute("data-record-id") + 1}">Delete</button>
-                        </div>`;
-
-            // reset "formu"
-            document.getElementById("form-input").value = "";
-
-            // samotne pridanie spz
-            document
-                .querySelector("#cars")
-                .insertAdjacentHTML("afterbegin", html);
-        }
-    });
+                document.getElementById('cars').insertAdjacentHTML('afterbegin', html);
+            });
+        });
+    }
 });
 
 // vymazavanie spz

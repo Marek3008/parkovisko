@@ -19,6 +19,10 @@ Route::get('/request-parked-cars', function(){
     return ParkedCar::all();
 })->name('requestParkedCars');
 
+Route::get('/request-allowed-cars', function(){
+    return AllowedCars::all();
+})->name('requestAllowedCars');
+
 Route::get('/allowed-cars', function(){
     return view('allowed', ["cars" => AllowedCars::orderBy('id', 'desc')->get()]);
 })->name('allowedCars');
