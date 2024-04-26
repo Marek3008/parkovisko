@@ -12,15 +12,8 @@
     flex-grow: 1;
 }
 
-.overview {
-    height: 60rem;
-    border-radius: 3px;
-    padding: 3rem;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
 .parkingSlotsOverview {
-    background-color: var(--terciary-color);
+    background-color: var(--tertiary-color);
 }
 
 .parkedCarsOverview {

@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
     @yield('styles', '')
 
     <title>@yield('title') | Parksy</title>
@@ -19,26 +20,7 @@
 </head>
 <body>
     <header>
-        <nav class="nav">
-            <div class="nav-logo">
-                <a href="{{route('index')}}"><img class="nav-logo--img" src="{{ asset('img/logo_white.png') }}" alt="Logo"></a>
-            </div> 
-            <div class="mobile-nav">
-                <div class="mobile-nav-container">
-                    <div class="mobile-nav-btn mobile-nav-btn--first"></div>
-                    <div class="mobile-nav-btn mobile-nav-btn--middle"></div>
-                    <div class="mobile-nav-btn mobile-nav-btn--last"></div>
-                </div>
-            </div>
-            <div class="nav-list">
-                <a class="nav-list--item" href="{{route('index')}}">Dashboard</a>
-                <a class="nav-list--item" href="{{ route('allowedCars') }}">Allowed Cars</a>
-                <a class="nav-list--item" href="#">Modes</a>
-                <a class="nav-list--item" href="#">Profile</a>
-                <a class="nav-list--item" href="#">Logout</a>
-            </div>
-        </nav>
-        <script src="{{asset('js/nav.js')}}"></script>
+        <x-nav/>
     </header>
     <main>
         <h1 class="heading-main">@yield('headingMain')</h1>

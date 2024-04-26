@@ -21,29 +21,29 @@ Parking house {{ucfirst($parkingHouse->name)}} in {{ucfirst($parkingHouse->locat
 @endsection
 
 @section('content')
-<div class="main-content">
+<x-content>
     <div class="main-content-left">
-        <h3 class="heading-tertiary freeSlotsCount">{{$slots->where('occupied', 0)->count()}}/{{$slots->count()}} free</h3>
-        <div class="overview parkingSlotsOverview" @style(['overflow-y: scroll' => $slots->count() > 6])>
+        <x-heading-tertiary class="freeSlotsCount">{{$slots->where('occupied', 0)->count()}}/{{$slots->count()}} free</x-heading-tertiary>
+        <x-overview class="parkingSlotsOverview" numOfElements="{{$slots->count()}}" maxElements="6">
             @foreach ($slots as $parkingSlot)
                 <div class="parkingSlot overviewItem" id="{{$parkingSlot->sensor->special_id}}">
                     <div class="parkingSlot--name">{{$parkingSlot->sensor->name}}</div>
                     <div @class(['parkingSlot--occupied', 'occupied' => $parkingSlot->occupied, 'free' => ! $parkingSlot->occupied])>{{$parkingSlot->occupied == 1 ? "Occupied" : "Free"}}</div>
                 </div>
             @endforeach
-        </div>
+        </x-overview>
     </div>
     <div class="main-content-right">
-        <h2 class="heading-tertiary">Mode: everyone</h2>
-        <div class="overview parkedCarsOverview" @style(['overflow-y: scroll' => $parkedCars->count() > 6])>
+        <x-heading-tertiary>Mode: everyone</x-heading-tertiary>
+        <x-overview class="parkedCarsOverview" :numOfElements="$parkedCars->count()" maxElements="6">
             @foreach ($parkedCars as $car)
                 <div class="parked-car overviewItem" id="{{$car->spz}}">
                     <div class="parked-car--id">{{$car->spz}}</div>
                 </div>
             @endforeach
-        </div>   
+        </x-overview>   
     </div>
-</div>
+</x-content>
 <script src="{{ asset('js/index.js') }}"></script>
 @endsection
         

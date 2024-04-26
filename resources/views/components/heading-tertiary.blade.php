@@ -1,0 +1,1 @@
+<h3 {{$attributes->class(['heading-tertiary'])}}>{{$slot}}</h3>

@@ -1,7 +1,7 @@
 :root {
     --primary-color: #1f2833;
     --secondary-color: #cfcfca;
-    --terciary-color: #aed3ffee;
+    --tertiary-color: #aed3ffee;
     --light-gray-color: #9c9a9a;
 
     --font-color-gray: #423f3f;
@@ -61,30 +61,6 @@ footer {
     color: var(--font-color-light-gray);
     height: 15rem;
     font-size: 2rem;
-}
-
-.heading-main {
-    font-size: 4rem;
-    letter-spacing: 0.45rem;
-    margin-bottom: 1.5rem;
-    font-weight: 800;
-}
-
-.heading-tertiary {
-    font-size: 3.2rem;
-    letter-spacing: 0.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 300;
-}
-
-.btn {
-    border: none;
-    font: inherit;
-    border-radius: 3px;
-    font-size: 2.3rem;
-    padding: 1rem;
-    cursor: pointer;
-    transition: all 0.3s;
 }
 
 @media screen and (max-width: 900px) {
