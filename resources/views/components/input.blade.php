@@ -1,0 +1,1 @@
+<input {{$attributes->class(['form-input'])}} type="{{ isset($type) ? $type : 'text' }}">

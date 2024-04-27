@@ -1,0 +1,42 @@
+.content-left {
+    flex-basis: 60%;
+}
+
+.sensors-overview {
+    background-color: var(--secondary-color);
+}
+
+.sensor-name {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.sensor-name-input {
+    border-bottom: 3px solid transparent;
+
+    &:focus {
+        border-bottom: 3px solid var(--gold-color);
+    }
+}
+
+.sensor-name-button {
+    background-color: #ffb700;
+
+    &:hover {
+        background-color: #ffc700;
+    }
+}
+
+.content-right {
+    flex-grow: 1;
+}
+
+.mode-selection {
+    background-color: #5aa4ffee;
+}
+
+.mode-selection-option {
+    background-color: var(--tertiary-color);
+}

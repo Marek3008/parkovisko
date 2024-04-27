@@ -8,20 +8,10 @@
     flex-basis: 60%;
 }
 
-.form-input {
-    font: inherit;
-    border: none;
-    width: 40rem;
-    padding: 1rem;
-    font-size: 2.5rem;
-    background-color: var(--tertiary-color);
-    border-radius: 2px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 0.8rem 2.4rem;
-    transition: all 0.2s;
+.allowed-input {
     border-bottom: 3px solid transparent;
     &:focus {
-        outline: none;
-        border-bottom: 3px solid #e2aa1d;
+        border-bottom: 3px solid var(--gold-color);
     }
 }
 

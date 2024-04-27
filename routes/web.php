@@ -4,6 +4,7 @@ use App\Models\AllowedCars;
 use App\Models\ParkedCar;
 use App\Models\ParkingHouse;
 use App\Models\ParkingSlot;
+use App\Models\Sensor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,10 @@ Route::get('/request-allowed-cars', function(){
 Route::get('/allowed-cars', function(){
     return view('allowed', ["cars" => AllowedCars::orderBy('id', 'desc')->get()]);
 })->name('allowedCars');
+
+Route::get('/settings', function(){
+    return view('settings', ['sensors' => Sensor::all()]);
+})->name('settings');
 
 Route::post('/allowed-cars/{name}', function($name){
     AllowedCars::create(["spz" => $name]);

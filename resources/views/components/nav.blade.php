@@ -11,9 +11,9 @@
         </div>
     </div>
     <div class="nav-list">
-        <a class="nav-list--item" href="{{route('index')}}">Dashboard</a>
+        <a class="nav-list--item" href="{{ route('index') }}">Dashboard</a>
         <a class="nav-list--item" href="{{ route('allowedCars') }}">Allowed Cars</a>
-        <a class="nav-list--item" href="#">Modes</a>
+        <a class="nav-list--item" href="{{ route('settings') }}">Settings</a>
         <a class="nav-list--item" href="#">Profile</a>
         <a class="nav-list--item" href="#">Logout</a>
     </div>

@@ -17,8 +17,8 @@
     <div class="allowed-content--left">
         <x-heading-tertiary>Add new allowed ID</x-heading-tertiary>
         <div id="popup-form" class="input-group">
-            <input id="form-input" class="form-input" type="text" name="spz" placeholder="ID">
-            <x-action-button id="submit-btn" class="submit-btn">Add</x-action-button>
+            <x-input id="form-input" class="allowed-input" type="text" name="spz" placeholder="ID"/>
+            <x-button id="submit-btn" class="submit-btn">Add</x-button>
         </div>
     </div>
     <div class="allowed-content--right">
@@ -26,7 +26,7 @@
             @foreach ($cars as $car)
                 <div id="car-{{ $car->id }}" class="car allowed-overview-item" data-record-id="{{$car->id}}">
                     <div class="car--id">{{ $car->spz }}</div>
-                    <x-action-button class="delete-btn car--deleteBtn" data-record-id="{{ $car->id }}">Delete</x-action-button>
+                    <x-button class="delete-btn car--deleteBtn" data-record-id="{{ $car->id }}">Delete</x-button>
                 </div>
             @endforeach
         </x-overview>

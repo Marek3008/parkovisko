@@ -3,6 +3,7 @@
     --secondary-color: #cfcfca;
     --tertiary-color: #aed3ffee;
     --light-gray-color: #9c9a9a;
+    --gold-color: #e2aa1d;
 
     --font-color-gray: #423f3f;
     --font-color-darkblue: #1f2833;
@@ -13,6 +14,8 @@
     --deleteBtn-color-hover: #e20b0b;
     --submitBtn-color: #1a4391;
     --submitBtn-color-hover: #1c51b3;
+    --changeBtn-color: #ffb700;
+    --changeBtn-color-hover: #ffc700;
 }
 * {
     margin: 0;
