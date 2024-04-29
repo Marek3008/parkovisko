@@ -26,37 +26,12 @@
     background-color: var(--secondary-color);
 }
 
-.allowed-overview-item {
-    font-size: 3rem;
-    color: var(--font-color-gray);
-    border-bottom: 1px solid var(--light-gray-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &:not(:last-child) {
-        margin-bottom: 2.5rem;
-    }
-}
-
-.delete-btn {
-    background-color: var(--deleteBtn-color);
-    color: var(--font-color-white);
+.car--deleteBtn {
     font-size: 2rem;
-
-    &:hover {
-        background-color: var(--deleteBtn-color-hover);
-    }
 }
 
-.submit-btn {
-    background-color: var(--submitBtn-color);
-    color: var(--font-color-white);
+.car--addBtn {
     margin-left: 2.5rem;
-
-    &:hover {
-        background-color: var(--submitBtn-color-hover);
-    }
 }
 
 @media screen and (max-width: 1000px) {

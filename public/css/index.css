@@ -14,19 +14,8 @@
     background-color: var(--secondary-color);
 }
 
-.overviewItem {
+.index-overview-item {
     font-size: 4rem;
-    color: var(--font-color-gray);
-    border-bottom: 1px solid var(--light-gray-color);
-
-    &:not(:last-child) {
-        margin-bottom: 2.5rem;
-    }
-}
-
-.parkingSlot {
-    display: flex;
-    justify-content: space-between;
 }
 
 .occupied {

@@ -29,7 +29,7 @@ Route::get('/allowed-cars', function(){
 })->name('allowedCars');
 
 Route::get('/settings', function(){
-    return view('settings', ['sensors' => Sensor::all()]);
+    return view('settings', ['sensors' => Sensor::all(), 'parkingHouses' => ParkingHouse::all()]);
 })->name('settings');
 
 Route::post('/allowed-cars/{name}', function($name){

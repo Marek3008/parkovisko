@@ -17,7 +17,7 @@
 @endsection
 
 @section('headingMain')
-Parking house {{ucfirst($parkingHouse->name)}} in {{ucfirst($parkingHouse->location)}}
+Parking house {{$parkingHouse->name}} in {{ucfirst($parkingHouse->location)}}
 @endsection
 
 @section('content')
@@ -26,10 +26,17 @@ Parking house {{ucfirst($parkingHouse->name)}} in {{ucfirst($parkingHouse->locat
         <x-heading-tertiary class="freeSlotsCount">{{$slots->where('occupied', 0)->count()}}/{{$slots->count()}} free</x-heading-tertiary>
         <x-overview class="parkingSlotsOverview" numOfElements="{{$slots->count()}}" maxElements="6">
             @foreach ($slots as $parkingSlot)
-                <div class="parkingSlot overviewItem" id="{{$parkingSlot->sensor->special_id}}">
-                    <div class="parkingSlot--name">{{$parkingSlot->sensor->name}}</div>
+                <x-overview-item class="index-overview-item" id="{{$parkingSlot->sensor->special_id}}">
+                    <div class="parkingSlot--name">
+                        @if (!is_null($parkingSlot->sensor->name))
+                            {{$parkingSlot->sensor->name}}
+
+                        @else
+                            <strong><em>{{$parkingSlot->sensor->special_id}}</em></strong>
+                        @endif
+                    </div>
                     <div @class(['parkingSlot--occupied', 'occupied' => $parkingSlot->occupied, 'free' => ! $parkingSlot->occupied])>{{$parkingSlot->occupied == 1 ? "Occupied" : "Free"}}</div>
-                </div>
+                </x-overview-item>
             @endforeach
         </x-overview>
     </div>
@@ -37,9 +44,9 @@ Parking house {{ucfirst($parkingHouse->name)}} in {{ucfirst($parkingHouse->locat
         <x-heading-tertiary>Mode: everyone</x-heading-tertiary>
         <x-overview class="parkedCarsOverview" :numOfElements="$parkedCars->count()" maxElements="6">
             @foreach ($parkedCars as $car)
-                <div class="parked-car overviewItem" id="{{$car->spz}}">
+                <x-overview-item  class="index-overview-item" id="{{$car->spz}}">
                     <div class="parked-car--id">{{$car->spz}}</div>
-                </div>
+                </x-overview-item>
             @endforeach
         </x-overview>   
     </div>

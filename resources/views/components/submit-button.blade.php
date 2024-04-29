@@ -1,0 +1,1 @@
+<x-button {{$attributes->class(['submit-btn'])}}>{{ $slot }}</x-button>

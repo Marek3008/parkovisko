@@ -1,0 +1,1 @@
+<x-button {{$attributes->class(['delete-btn'])}}>{{$slot}}</x-button>

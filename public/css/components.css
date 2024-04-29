@@ -48,7 +48,7 @@
     gap: 10rem;
 }
 
-.form-input {
+.input {
     font: inherit;
     border: none;
     width: 40rem;
@@ -60,6 +60,32 @@
     transition: all 0.2s;
     &:focus {
         outline: none;
+    }
+}
+
+.changeBtn {
+    background-color: var(--changeBtn-color);
+
+    &:hover {
+        background-color: var(--changeBtn-color-hover);
+    }
+}
+
+.delete-btn {
+    background-color: var(--deleteBtn-color);
+    color: var(--font-color-white);
+
+    &:hover {
+        background-color: var(--deleteBtn-color-hover);
+    }
+}
+
+.submit-btn {
+    background-color: var(--submitBtn-color);
+    color: var(--font-color-white);
+
+    &:hover {
+        background-color: var(--submitBtn-color-hover);
     }
 }
 
