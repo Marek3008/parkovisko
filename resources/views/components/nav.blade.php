@@ -15,7 +15,11 @@
         <a class="nav-list--item" href="{{ route('allowedCars') }}">Allowed Cars</a>
         <a class="nav-list--item" href="{{ route('settings') }}">Settings</a>
         <a class="nav-list--item" href="#">Profile</a>
-        <a class="nav-list--item" href="#">Logout</a>
+        <form action="{{route('logout')}}" class="nav-list--item" method="POST">
+            @csrf
+            @method('DELETE')
+            <a href="#" onclick="this.closest('form').submit();return false;">Logout</a>
+        </form>
     </div>
 </nav>
 <script src="{{asset('js/nav.js')}}"></script>

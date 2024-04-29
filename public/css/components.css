@@ -1,3 +1,25 @@
+header {
+    margin-bottom: 3rem;
+}
+
+main {
+    min-height: calc(100vh - 5rem - 2rem - 2rem - 3rem);
+    padding-right: 3rem;
+    padding-left: 3rem;
+    animation: fadeIn 1s;
+    padding-bottom: 8rem;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--font-color-light-gray);
+    height: 15rem;
+    font-size: 2rem;
+}
+
 .heading-main {
     font-size: 4rem;
     letter-spacing: 0.45rem;
@@ -92,5 +114,17 @@
 @media screen and (max-width: 900px) {
     .main-content {
         flex-direction: column;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: translateX(-10%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
