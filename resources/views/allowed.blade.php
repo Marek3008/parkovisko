@@ -20,6 +20,9 @@
             <x-input id="form-input" class="allowed-input" type="text" name="spz" placeholder="ID"/>
             <x-submit-button id="submit-btn" class="car--addBtn">Add</x-submit-button>
         </div>
+        <div id="error-container">
+
+        </div>
     </div>
     <div class="allowed-content--right">
         <x-overview id="cars" class="allowed-overview" :numOfElements="$cars->count()" maxElements='8'>

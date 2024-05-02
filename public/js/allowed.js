@@ -1,5 +1,6 @@
 const submitButton = document.getElementById("submit-btn");
 const formInput = document.getElementById("form-input");
+const errorContainer = document.getElementById("error-container");
 
 // csrf tu musi byt bez toho mi hadzalo 419
 function getCSRFToken() {
@@ -14,45 +15,48 @@ async function getAllowedCars() {
     return result;
 }
 
-// ----- MARIO TOTO SOM TI PRIPRAVIL ----- (funguje to)
-function validateInput() {
-    if (!formInput.value) {
-        console.log("napis nieco");
-        return false;
-    }
-    if (formInput.value.length > 10) {
-        console.log("je to dlhe");
-        return false;
-    }
-    return true;
-}
 
 // pridavanie spz; zaroven sa aj updatuje content bez refreshu
 submitButton.addEventListener("click", function () {
-    if (validateInput()) {
-        fetch("/allowed-cars/" + formInput.value, {
-            method: "POST",
-            headers: {
-                "X-CSRF-TOKEN": getCSRFToken(),
-            },
+    fetch("/allowed-cars", {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": getCSRFToken(),
+            "Name" : formInput.value
+        },
+    })  
+        .then(response => {
+            if(response.status == 500){
+                return response.json()
+            }
+            else{
+                return {};
+            }                            
         })
-            .then(() => {
-                return getAllowedCars();
-            })
-            .then((models) => {
-                document.getElementById("cars").innerHTML = "";
-                models.forEach((element) => {
-                    const html = `<div id="car-${element.id}" class="overview-item car" data-record-id="${element.id}">
-                                    <div class="car--id">${element.spz}</div>
-                                    <button class="btn delete-btn car--deleteBtn" data-record-id="${element.id}">Delete</button>
-                                </div>`;
+        .then(data => {
+            if(data.error){
+                throw new Error(data.error);
+            }
 
-                    document
-                        .getElementById("cars")
-                        .insertAdjacentHTML("afterbegin", html);
-                });
+            return getAllowedCars();
+        })
+        .then((models) => {
+            document.getElementById("cars").innerHTML = "";
+            errorContainer.innerHTML = "";
+            models.forEach((element) => {
+                const html = `<div id="car-${element.id}" class="overview-item car" data-record-id="${element.id}">
+                                <div class="car--id">${element.spz}</div>
+                                <button class="btn delete-btn car--deleteBtn" data-record-id="${element.id}">Delete</button>
+                            </div>`;
+
+                document
+                    .getElementById("cars")
+                    .insertAdjacentHTML("afterbegin", html);
             });
-    }
+        })
+        .catch(error => {
+            errorContainer.innerHTML = error.message;
+        });
 });
 
 // vymazavanie spz

@@ -26,6 +26,13 @@
     background-color: var(--secondary-color);
 }
 
+#error-container {
+    text-align: left;
+    font-size: 2rem;
+    color: #e01414;
+    font-weight: 500;
+}
+
 .car--deleteBtn {
     font-size: 2rem;
 }
