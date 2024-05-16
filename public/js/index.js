@@ -35,7 +35,7 @@ client.on("message", function (topic, message) {
         models.forEach((element) => {
             const content = element.occupied == 1 ? "Occupied" : "Free";
             const html = `
-            <div class="index-overview-item" id="${element.spz}">
+            <div class="overview-item index-overview-item" id="${element.spz}">
                 <div class="parked-car--id">${element.spz}</div>
             </div>`;
             parkedCarsOverview.insertAdjacentHTML("afterbegin", html);

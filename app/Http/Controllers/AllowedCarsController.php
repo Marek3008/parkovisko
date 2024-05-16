@@ -29,11 +29,14 @@ class AllowedCarsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $input = trim($request->header('Name'));
+
         try{
-            if(strlen($request->header('Name')) > 10){
+            if(strlen($input) > 10){
                 throw new Exception("Limit is 10 characters");
             }
-            else if(empty($request->header('Name'))){
+            else if(strlen($input) == 0){
                 throw new Exception("Cannot add empty string");
             }
         }
@@ -41,8 +44,9 @@ class AllowedCarsController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
         
+        
 
-        AllowedCars::create(["spz" => $request->header('Name')]);
+        AllowedCars::create(["spz" => strtoupper($input)]);
         return;
     }
 

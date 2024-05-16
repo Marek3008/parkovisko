@@ -10,6 +10,7 @@
 
 .allowed-input {
     border-bottom: 3px solid transparent;
+    text-transform: uppercase;
     &:focus {
         border-bottom: 3px solid var(--gold-color);
     }
@@ -39,6 +40,10 @@
 
 .car--addBtn {
     margin-left: 2.5rem;
+}
+
+.car--id {
+    text-transform: uppercase;
 }
 
 @media screen and (max-width: 1000px) {

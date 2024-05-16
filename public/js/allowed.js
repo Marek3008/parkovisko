@@ -43,6 +43,7 @@ submitButton.addEventListener("click", function () {
         .then((models) => {
             document.getElementById("cars").innerHTML = "";
             errorContainer.innerHTML = "";
+            formInput.value = "";
             models.forEach((element) => {
                 const html = `<div id="car-${element.id}" class="overview-item car" data-record-id="${element.id}">
                                 <div class="car--id">${element.spz}</div>
