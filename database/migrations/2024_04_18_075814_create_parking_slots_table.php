@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('parking_slots', function (Blueprint $table) {
             $table->id();
             $table->boolean("occupied")->default(false);
-            $table->foreignIdFor(Sensor::class)->constrained();
+            $table->foreignIdFor(Sensor::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
