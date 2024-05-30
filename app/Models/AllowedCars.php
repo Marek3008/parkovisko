@@ -10,6 +10,10 @@ class AllowedCars extends Model
     use HasFactory;
 
     protected $fillable = [
-        "spz"
+        "spz", "parking_house_id"
     ];
+
+    public function parkingHouse(){
+        return $this->hasOne(ParkingHouse::class, 'parking_house_id');
+    }
 }

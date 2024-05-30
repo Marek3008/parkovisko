@@ -13,7 +13,7 @@ class AllowedCarsController extends Controller
      */
     public function index()
     {
-        return view('allowed', ["cars" => AllowedCars::orderBy('id', 'desc')->get()]);
+        return view('allowed', ["cars" => AllowedCars::where("parking_house_id", session("parkingHouse"))->orderBy('id', 'desc')->get()]);
     }
 
     /**
@@ -43,10 +43,11 @@ class AllowedCarsController extends Controller
         catch(Exception $e){
             return response()->json(['error' => $e->getMessage()], 500);
         }
-        
-        
 
-        AllowedCars::create(["spz" => strtoupper($input)]);
+        AllowedCars::create([
+            "spz" => strtoupper($input),
+            "parking_house_id" => session("parkingHouse")
+        ]);
         return;
     }
 

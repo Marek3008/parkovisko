@@ -4,7 +4,7 @@ async function mqttData(url) {
     return result;
 }
 
-const mqtt_url = "ws://broker.emqx.io:8083/mqtt";
+const mqtt_url = "ws://10.42.0.1:8080/mqtt";
 const client = mqtt.connect(mqtt_url);
 
 client.on("connect", function () {

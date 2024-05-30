@@ -14,7 +14,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function(){
     Route::get('/', function () {
-        return view('index', ["slots" => ParkingSlot::with('sensor')->get(), "parkingHouse" => ParkingHouse::where('id', 1)->first(), "parkedCars" => ParkedCar::all()]);
+
+        $parkingHouse = ParkingHouse::find(session('parkingHouse'));
+
+        $slots = ParkingSlot::with('sensor')->whereHas('sensor', function($query) { 
+            $query->where('parking_house_id', session('parkingHouse')); 
+        })->get();
+
+        $parkedCars = ParkedCar::where('parking_house_id', session("parkingHouse"));
+
+        return view('index', [
+            "slots" =>  $slots, 
+            "parkingHouse" => $parkingHouse, 
+            "parkedCars" => $parkedCars
+        ]);
     })->name('index');
 
 
@@ -29,6 +42,15 @@ Route::middleware('auth')->group(function(){
     Route::get('/settings', function(){
         return view('settings', ['sensors' => Sensor::all(), 'parkingHouses' => ParkingHouse::all()]);
     })->name('settings');
+
+    Route::post('/settings/change-house', function(Request $request){
+
+        $parkingHouse = $request['parkingHouse'];
+
+        session(["parkingHouse" => $parkingHouse]);
+
+        return redirect()->route('index');
+    })->name('change-parking-house');
     
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');

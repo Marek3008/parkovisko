@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ParkedCar extends Model
 {
     use HasFactory;
+
+    public function parkingHouse(){
+        return $this->belongsTo(ParkingHouse::class, 'parking_house_id');
+    }
 }

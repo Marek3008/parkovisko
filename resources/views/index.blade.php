@@ -11,9 +11,10 @@
     <script>
         const parkingSlotsRoute = "{{ route('requestParkingSlots') }}";
         const parkedCarsRoute = "{{ route('requestParkedCars') }}";
-        const topicsArray = ['banasko/zmena'];
+        const topicsArray = ['web/change'];
     </script>
     <script src="{{ asset('js/mqtt.js') }}"></script>
+    <script src="{{asset('js/index.js')}}"></script>
 @endsection
 
 @section('headingMain')

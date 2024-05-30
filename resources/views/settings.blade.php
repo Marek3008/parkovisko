@@ -4,11 +4,13 @@
     <link rel="stylesheet" href="{{ asset('css/settings.css') }}">
 @endsection
 
+@section('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('title', 'Settings')
 
-@section('scripts')
 
-@endsection
 
 @section('headingMain')
 Settings
@@ -46,12 +48,15 @@ Settings
         <div class="parkingHouses">
             <x-heading-tertiary>Parking House</x-heading-tertiary>
             <div class="selection-group">
-                <select name="parkingHouse" class="selection input">
-                    @foreach ($parkingHouses as $parkingHouse)
-                        <option value="{{$parkingHouse->id}}" class="selection-option">{{$parkingHouse->name}} - {{ucfirst($parkingHouse->location)}}</option>
-                    @endforeach
-                </select><br>
-                <x-change-button>Change</x-change-button>
+                <form action="{{route('change-parking-house')}}" method="POST">
+                    @csrf
+                    <select name="parkingHouse" class="selection input" id="parkingHouse">
+                        @foreach ($parkingHouses as $parkingHouse)
+                            <option @selected($parkingHouse->id == session('parkingHouse')) value="{{$parkingHouse->id}}" class="selection-option">{{$parkingHouse->name}} - {{ucfirst($parkingHouse->location)}}</option>
+                        @endforeach
+                    </select><br>
+                    <x-change-button>Change</x-change-button>
+                </form>
             </div>
         </div>
     </div>

@@ -20,4 +20,8 @@ class ParkingHouse extends Model
     {
         return $this->hasManyThrough(ParkingSlot::class, Sensor::class);
     }
+
+    public function parkedCars(){
+        return $this->hasMany(ParkedCar::class, 'parking_house_id');
+    }
 }

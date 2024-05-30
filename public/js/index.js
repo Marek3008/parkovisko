@@ -2,6 +2,7 @@ client.on("message", function (topic, message) {
     let route = parkingSlotsRoute;
     mqttData(route).then((models) => {
         models.forEach((element) => {
+            console.log(element);
             const content = element.occupied == 1 ? "Occupied" : "Free";
             const elementToChange = document
                 .getElementById(`${element.sensor.special_id}`)
