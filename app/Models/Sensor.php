@@ -21,4 +21,9 @@ class Sensor extends Model
     {
         return $this->belongsTo(ParkingHouse::class);
     }
+
+    public function device() : BelongsTo
+    {
+        return $this->belongsTo(Device::class);
+    }
 }

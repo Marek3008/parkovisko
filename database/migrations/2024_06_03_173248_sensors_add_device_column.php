@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Device;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('parking_houses', function(Blueprint $table){
-            $table->enum('mode', ['allowed', 'everyone', 'open', 'closed']);
+        Schema::table('sensors', function (Blueprint $table){
+            $table->foreignIdFor(Device::class)->nullable()->constrained();
         });
     }
 
@@ -21,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('parking_houses', function (Blueprint $table) {
-            $table->dropColumn('mode');
+        Schema::table('sensors', function (Blueprint $table){
+            $table->dropForeign('device_id');
         });
     }
 };

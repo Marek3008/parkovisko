@@ -15,13 +15,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function(){
     Route::get('/', function () {
 
-        $parkingHouse = ParkingHouse::find(session('parkingHouse'));
+        if(session()->has('parkingHouse')){
+            $parkingHouseId = session('parkingHouse');
+        }
+        else {
+            $parkingHouseId = ParkingHouse::first()->id;
+        }
+        $parkingHouse = ParkingHouse::find($parkingHouseId);
 
-        $slots = ParkingSlot::with('sensor')->whereHas('sensor', function($query) { 
-            $query->where('parking_house_id', session('parkingHouse')); 
+        $slots = ParkingSlot::with('sensor')->whereHas('sensor', function($query) use($parkingHouseId) { 
+            $query->where('parking_house_id', $parkingHouseId); 
         })->get();
 
-        $parkedCars = ParkedCar::where('parking_house_id', session("parkingHouse"));
+        $parkedCars = ParkedCar::where('parking_house_id', $parkingHouseId);
 
         return view('index', [
             "slots" =>  $slots, 

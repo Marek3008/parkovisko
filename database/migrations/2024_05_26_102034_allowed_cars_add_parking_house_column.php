@@ -13,8 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('allowed_cars', function(Blueprint $table){
-            $table->foreignIdFor(ParkingHouse::class)->constrained();
+            $table->foreignIdFor(ParkingHouse::class)->nullable()->constrained();
         });
+        
     }
 
     /**
@@ -22,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('allowed_cars', function(Blueprint $table){
+            $table->dropForeign('parking_house_id');
+        });
     }
 };

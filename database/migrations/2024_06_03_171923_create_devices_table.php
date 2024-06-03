@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('parking_houses', function(Blueprint $table){
-            $table->enum('mode', ['allowed', 'everyone', 'open', 'closed']);
+        Schema::create('devices', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 20);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('parking_houses', function (Blueprint $table) {
-            $table->dropColumn('mode');
-        });
+        Schema::dropIfExists('devices');
     }
 };
