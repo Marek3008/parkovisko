@@ -4,6 +4,7 @@
 
 .sensors-overview {
     background-color: var(--secondary-color);
+    position: relative;
 }
 
 .sensors-overview-item {
@@ -41,6 +42,16 @@
 
 .selection-option {
     background-color: var(--tertiary-color);
+}
+
+#error-container {
+    position: absolute;
+    top: -3.5rem;
+    right: 0;
+    text-align: left;
+    font-size: 2rem;
+    color: #e01414;
+    font-weight: 500;
 }
 
 @media screen and (max-width: 1200px) {

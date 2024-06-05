@@ -22,19 +22,19 @@ submitButton.addEventListener("click", function () {
         method: "POST",
         headers: {
             "X-CSRF-TOKEN": getCSRFToken(),
-            "Name" : formInput.value
+            "Name": formInput.value
         },
-    })  
+    })
         .then(response => {
-            if(response.status == 500){
+            if (response.status == 500) {
                 return response.json()
             }
-            else{
+            else {
                 return {};
-            }                            
+            }
         })
         .then(data => {
-            if(data.error){
+            if (data.error) {
                 throw new Error(data.error);
             }
 

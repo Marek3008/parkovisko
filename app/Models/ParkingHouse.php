@@ -11,17 +11,20 @@ class ParkingHouse extends Model
 {
     use HasFactory;
 
-    public function sensors() : HasMany
+    protected $fillable = ["mode"];
+
+    public function sensors(): HasMany
     {
         return $this->hasMany(Sensor::class);
     }
 
-    public function parkingSlots() : HasManyThrough
+    public function parkingSlots(): HasManyThrough
     {
         return $this->hasManyThrough(ParkingSlot::class, Sensor::class);
     }
 
-    public function parkedCars(){
+    public function parkedCars()
+    {
         return $this->hasMany(ParkedCar::class, 'parking_house_id');
     }
 }

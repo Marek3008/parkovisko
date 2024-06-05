@@ -20,13 +20,14 @@ Settings
 <x-content class="settings-content">
     <div class="content-left">
         <x-heading-tertiary>Sensors</x-heading-tertiary>
-        <x-overview class="sensors-overview" numOfElements="{{$sensors->count()}}" maxElements="6">
+        <x-overview id="sensors" class="sensors-overview" numOfElements="{{$sensors->count()}}" maxElements="6">
+            <div id="error-container"></div>
             @foreach ($sensors as $sensor)
                 <x-overview-item class="sensors-overview-item">
                     <div class="sensor-id">{{$sensor->special_id}}</div>
                     <div class="sensor-name">
-                        <x-input class="sensor-name-input" name="sensorNameInput" placeholder="Name" value="{{ !is_null($sensor->name) ? $sensor->name : '' }}" />
-                        <x-change-button>Change</x-change-button>
+                        <x-input id="sensor-{{ $sensor->id }}" class="sensor-name-input" name="sensorNameInput" placeholder="Name" value="{{ !is_null($sensor->name) ? $sensor->name : '' }}" />
+                        <x-change-button btn-id="{{ $sensor->id }}">Change</x-change-button>
                     </div>
                 </x-overview-item>
             @endforeach
@@ -36,13 +37,13 @@ Settings
         <div class="modes">
             <x-heading-tertiary>Mode</x-heading-tertiary>
             <div class="selection-group">
-                <select name="mode" class="selection input">
-                    <option value="everyone" class="selection-option">Everyone</option>
-                    <option value="only-allowed" class="selection-option">Only allowed</option>
-                    <option value="opened-gate" class="selection-option">Opened gate</option>
-                    <option value="close-gate" class="selection-option">Closed gate</option>
+                <select id="mode" name="mode" class="selection input">
+                    <option @selected($currentHouse->mode == "everyone") value="everyone" class="selection-option">Everyone</option>
+                    <option @selected($currentHouse->mode == "allowed") value="allowed" class="selection-option">Only allowed</option>
+                    <option @selected($currentHouse->mode == "open") value="open" class="selection-option">Opened gate</option>
+                    <option @selected($currentHouse->mode == "closed") value="closed" class="selection-option">Closed gate</option>
                 </select><br>
-                <x-change-button>Change</x-change-button>
+                <x-change-button id="change-button">Change</x-change-button>
             </div>
         </div>
         <div class="parkingHouses">
@@ -61,4 +62,5 @@ Settings
         </div>
     </div>
 </x-content>
+<script src="{{ asset('js/settings.js') }}"></script>
 @endsection
