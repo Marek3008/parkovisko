@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
             $query->where('parking_house_id', $parkingHouseId);
         })->get();
 
-        $parkedCars = ParkedCar::where('parking_house_id', $parkingHouseId);
+        $parkedCars = ParkedCar::where('parking_house_id', $parkingHouseId)->get();
 
         return view('index', [
             "slots" =>  $slots,

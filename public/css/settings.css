@@ -45,13 +45,16 @@
 }
 
 #error-container {
-    position: absolute;
-    top: -3.5rem;
-    right: 0;
-    text-align: left;
     font-size: 2rem;
     color: #e01414;
     font-weight: 500;
+    margin-right: 4.5rem;
+}
+
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media screen and (max-width: 1200px) {

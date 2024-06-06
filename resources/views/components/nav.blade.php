@@ -14,7 +14,6 @@
         <a class="nav-list--item" href="{{ route('index') }}">Dashboard</a>
         <a class="nav-list--item" href="{{ route('allowed-cars.index') }}">Allowed Cars</a>
         <a class="nav-list--item" href="{{ route('settings') }}">Settings</a>
-        <a class="nav-list--item" href="#">Profile</a>
         <form action="{{route('logout')}}" class="nav-list--item" method="POST">
             @csrf
             @method('DELETE')

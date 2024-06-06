@@ -42,7 +42,7 @@ Parking house {{$parkingHouse->name}} in {{ucfirst($parkingHouse->location)}}
         </x-overview>
     </div>
     <div class="main-content-right">
-        <x-heading-tertiary>Mode: everyone</x-heading-tertiary>
+        <x-heading-tertiary>Mode: {{$parkingHouse->mode}}</x-heading-tertiary>
         <x-overview class="parkedCarsOverview" :numOfElements="$parkedCars->count()" maxElements="6">
             @foreach ($parkedCars as $car)
                 <x-overview-item  class="index-overview-item" id="{{$car->spz}}">

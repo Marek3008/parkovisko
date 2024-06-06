@@ -19,9 +19,11 @@ Settings
 @section('content')
 <x-content class="settings-content">
     <div class="content-left">
-        <x-heading-tertiary>Sensors</x-heading-tertiary>
-        <x-overview id="sensors" class="sensors-overview" numOfElements="{{$sensors->count()}}" maxElements="6">
+        <div class="heading-container">
+            <x-heading-tertiary>Sensors</x-heading-tertiary>
             <div id="error-container"></div>
+        </div>
+        <x-overview id="sensors" class="sensors-overview" numOfElements="{{$sensors->count()}}" maxElements="6">
             @foreach ($sensors as $sensor)
                 <x-overview-item class="sensors-overview-item">
                     <div class="sensor-id">{{$sensor->special_id}}</div>
