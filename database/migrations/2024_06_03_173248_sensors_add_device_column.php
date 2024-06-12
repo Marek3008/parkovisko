@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('sensors', function (Blueprint $table){
-            $table->foreignIdFor(Device::class)->nullable()->constrained();
+            $table->foreignIdFor(Device::class)->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

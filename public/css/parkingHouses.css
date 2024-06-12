@@ -1,0 +1,53 @@
+.houses-content--left {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.houses-content--right {
+    flex-basis: 60%;
+}
+
+.houses-input {
+    border-bottom: 3px solid transparent;
+
+    &:focus {
+        border-bottom: 3px solid var(--gold-color);
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+}
+
+.input-group {
+    margin-top: 3rem;
+    /* display: flex;
+    align-items: stretch; */
+}
+
+.houses-overview {
+    height: 70rem;
+    background-color: var(--secondary-color);
+}
+
+#error-container {
+    text-align: left;
+    font-size: 2rem;
+    color: #e01414;
+    font-weight: 500;
+}
+
+.house--deleteBtn {
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .houses-content {
+        flex-direction: column;
+    }
+
+    .houses-content--right {
+        flex-basis: 0;
+    }
+}

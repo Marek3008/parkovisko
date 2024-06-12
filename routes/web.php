@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/request-parking-slots', [CarsController::class, 'getParkingSlots'])->name('requestParkingSlots');
     Route::get('/request-parked-cars', [CarsController::class, 'getParkedCars'])->name('requestParkedCars');
     Route::get('/request-allowed-cars', [CarsController::class, 'getAllowedCars'])->name('requestAllowedCars');
+    Route::get('/request-parking-houses', [CarsController::class, 'getParkingHouses'])->name('requestParkingHouses');
 
 
     Route::prefix('settings')->group(function () {
@@ -51,7 +52,41 @@ Route::middleware('auth')->group(function () {
     });
 
 
+    Route::get('/parkingHouses', function(){
+        $parkingHouses = ParkingHouse::all();
 
+        return view('parkingHouses', [
+            "houses" => $parkingHouses
+        ]);
+    })->name('parkingHouses');
+
+    Route::post('/parkingHouses', function() {
+        $name = trim(request()->header('Name'));
+        $location = trim(request()->header('Location'));
+
+        try{
+            if(strlen($name) > 32 || strlen($location) > 100){
+                throw new Exception("Limit of Name is 32 and of Location 100");
+            }
+            else if(strlen($name) == 0 || strlen($location) === 0){
+                throw new Exception("Cannot add empty string");
+            }
+        }
+        catch(Exception $e){
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        ParkingHouse::create([
+            "name" => $name,
+            "location" => $location
+        ]);
+        return;
+    });
+
+    Route::delete('/parkingHouses/{id}', function($id){
+        ParkingHouse::where('id', $id)->delete();
+        return; 
+    });
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 });

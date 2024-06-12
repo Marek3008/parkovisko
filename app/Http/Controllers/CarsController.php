@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AllowedCars;
 use App\Models\ParkedCar;
 use App\Models\ParkingSlot;
+use App\Models\ParkingHouse;
 use Illuminate\Http\Request;
 
 class CarsController extends Controller
@@ -21,5 +22,9 @@ class CarsController extends Controller
 
     public function getAllowedCars(){
         return AllowedCars::where("parking_house_id", session("parkingHouse"))->get();
+    }
+
+    public function getParkingHouses(){
+        return ParkingHouse::orderBy("id", "asc")->get();
     }
 }

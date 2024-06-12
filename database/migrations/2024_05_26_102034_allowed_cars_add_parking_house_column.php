@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('allowed_cars', function(Blueprint $table){
-            $table->foreignIdFor(ParkingHouse::class)->nullable()->constrained();
+            $table->foreignIdFor(ParkingHouse::class)->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
         
     }

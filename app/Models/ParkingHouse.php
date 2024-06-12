@@ -11,7 +11,7 @@ class ParkingHouse extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["mode"];
+    protected $fillable = ["name", "location","mode"];
 
     public function sensors(): HasMany
     {

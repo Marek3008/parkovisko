@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string("name", 32)->nullable();
             $table->string("special_id", 25)->unique();
-            $table->foreignIdFor(ParkingHouse::class)->constrained();
+            $table->foreignIdFor(ParkingHouse::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
